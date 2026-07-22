@@ -7,9 +7,9 @@ class UserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
-        user.email_verified = False
+        # user.email_verified = False
         user.save(
-            update_fields=["email_verified"]
+            using=self._db
         )
         return user
 
