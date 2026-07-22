@@ -13,13 +13,14 @@ class IsStaff(BasePermission):
             request.user.is_authenticated
             and request.user.role == request.user.Role.STAFF
         )
-class IsCustomer(BasePermission):
-    def has_permission(self, request, view):
-        return (
-            request.user.is_authenticated
-            and request.user.role == request.user.Role.CUSTOMER
-        )        
+
+
 class IsEmailVerified(BasePermission):
+
+    message = (
+        "You must verify your email "
+        "before performing this action."
+    )
 
     def has_permission(
         self,
@@ -29,4 +30,4 @@ class IsEmailVerified(BasePermission):
         return (
             request.user.is_authenticated
             and request.user.email_verified
-        )    
+        )

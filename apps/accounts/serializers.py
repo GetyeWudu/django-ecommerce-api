@@ -49,6 +49,14 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
+class VerifyEmailSerializer(
+    serializers.Serializer
+):
+
+    user_id = serializers.IntegerField()
+
+    token = serializers.CharField()
+
 class PasswordChangeSerializer(serializers.ModelSerializer):
     current_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True, min_length=8)
