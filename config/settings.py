@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework_simplejwt.token_blacklist',
+    'django_filters',
     'rest_framework',
     'apps.accounts',
+    'apps.products',
 ]
 
 MIDDLEWARE = [
@@ -127,8 +129,19 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAuthenticated",
     ),
+    "DEFAULT_FILTER_BACKENDS": [
+    
+            "django_filters.rest_framework.DjangoFilterBackend",
+    
+            "rest_framework.filters.SearchFilter",
+    
+            "rest_framework.filters.OrderingFilter",
+    
+        ],
    
 }
+
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
